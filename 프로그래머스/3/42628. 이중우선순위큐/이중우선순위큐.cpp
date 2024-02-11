@@ -1,8 +1,5 @@
 #include<bits/stdc++.h>
-
-
 using namespace std;
-
 vector<int> solution(vector<string> operations) {
     vector<int> answer;
     vector<int>temp;
@@ -15,24 +12,14 @@ vector<int> solution(vector<string> operations) {
             temp.push_back(stoi(i));
         }else if(s[0]=='D'&&temp.size()!=0){
             if(s[2]!='-'){
-                priority_queue<int> pq;
-                for(auto i:temp){
-                    pq.push(i);
-                }
-                temp.erase(find(temp.begin(),temp.end(),pq.top()));
+                sort(temp.begin(),temp.end());
+                temp.pop_back();
             }else{
-                priority_queue<int> pq;
-                for(auto i:temp){
-                    pq.push(-i);
-                }
-                temp.erase(find(temp.begin(),temp.end(),-pq.top()));
+                sort(temp.rbegin(),temp.rend());
+                temp.pop_back();
             }
-            
         }
-        
-        
     }
-    
     if(temp.size()==0){
         return {0,0};
     }else if(temp.size()==1){
@@ -40,5 +27,4 @@ vector<int> solution(vector<string> operations) {
     }
     sort(temp.begin(),temp.end());
     return {temp[temp.size()-1],temp[0]};
-    
 }
