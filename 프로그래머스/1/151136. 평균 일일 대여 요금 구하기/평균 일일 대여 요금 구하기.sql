@@ -1,0 +1,1 @@
+SELECT  Round(avg(daily_fee)) 'AVERAGE_FEE' from car_rental_company_car group by car_type having car_type='suv'
