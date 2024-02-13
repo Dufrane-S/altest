@@ -1,1 +1,1 @@
-SELECT PT_NAME, PT_NO, GEND_CD, AGE, ifnull(TLNO,'NONE') 'TLNO' From patient Where GEND_CD = 'W' and AGE<=12 order by AGE DESC , PT_NAME ASC;
+SELECT PT_NAME, PT_NO, GEND_CD, AGE, /*ifnull(TLNO,'NONE')*/ Case when TLNO IS null then 'NONE' ELSE TLNO END 'TLNO' From patient Where GEND_CD = 'W' and AGE<=12 order by AGE DESC , PT_NAME ASC;
