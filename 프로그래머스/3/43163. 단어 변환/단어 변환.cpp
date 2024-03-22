@@ -1,34 +1,47 @@
-#include<bits/stdc++.h>
-
+#include <string>
+#include <vector>
+#include <iostream>
 using namespace std;
-int answer=99999;
-string goal;
-bool checkdif(string a, string b){
-    int dif=0;
+string target;
+string arr[51];
+vector<string>words;
+int done[51];
+int answer=0;
+int ranswer=99999999;
+bool isOk(string a,string b){
+    int c=0;
     for(int i=0;i<a.size();i++){
-        if(a[i]!=b[i]) dif++;
+        if(a[i]!=b[i])c++;
     }
-    if(dif==1)return true;
+    if(c==1)return true;
     return false;
 }
-
-
-void dfs(string begin,map<string,int>m,vector<string>words,int depth){
-    m[begin]+=1;
-    depth++;
-    if(begin==goal&&answer>depth)answer=--depth;
-    for(auto i:words){
-        if(m[i]==0&&checkdif(begin,i)){
-            dfs(i,m,words,depth);
+void func(int n){
+    if(arr[n]==target){
+        for(int i=0;i<answer;i++){
+            cout<<arr[i]<<' ';
+        }
+        if(ranswer>answer)ranswer = answer;
+        
+    }
+    
+    for(int i=0;i<words.size();i++){
+        if(done[i]==0&&isOk(words[i],arr[n])){
+            arr[n+1]=words[i];
+            done[i]=1;
+            answer++;
+            func(n+1);
+            answer--;
+            done[i]=0;
         }
     }
+    
 }
-
-int solution(string begin, string target, vector<string> words) {
-    map<string,int>m;
-    goal = target;
-    int depth=0;
-    if(find(words.begin(),words.end(),target)==words.end())return 0;
-    dfs(begin,m,words,depth);
-    return answer;
+int solution(string begin, string a, vector<string> w) {
+    words=w;
+    arr[0]=begin;
+    target=a;
+    func(0);
+    if(ranswer==99999999)return 0;
+    return ranswer;
 }
