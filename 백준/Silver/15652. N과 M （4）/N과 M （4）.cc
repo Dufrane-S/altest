@@ -1,27 +1,30 @@
-#include <bits/stdc++.h>
+#include<iostream>
+#include<vector>
+
 using namespace std;
 
-int x,y;
-int arr[10];
 
-void func(int n){
-    if(n==y){
-        for(int i=0;i<y;i++){
-            cout<<arr[i]<<' ';
-        }
-        cout<<'\n';
-        return;
-    }
-    for(int i=1;i<=x;i++){
-        if(arr[n-1]>i)continue;
-        arr[n]=i;
-        func(n+1);
-    }
+int n, m;
+vector<int>box;
 
+void dfs(int depth) {
+	if (depth == m) { 
+		for (int i = 0; i < m; i++) {
+			cout << box[i] <<' ';
+		}cout << '\n';
+		return; 
+	}
+	for (int i = 1; i <= n; i++) {
+		if (depth >= 1 && box[depth - 1] > i)continue;
+		box.push_back(i);
+		dfs(depth + 1);
+		box.pop_back();
+	}
 }
 
-
-int main(void){
-    cin>>x>>y;
-    func(0);
+int main()
+{
+	cin >> n >> m;
+	
+	dfs(0);
 }
