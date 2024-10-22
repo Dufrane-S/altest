@@ -7,26 +7,26 @@ public class Main{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String s = br.readLine();
 		
-		int n = Integer.parseInt(s);
+		long n = Long.parseLong(s);
 		n--;
 		
 		s = br.readLine();
-		StringTokenizer st = new StringTokenizer(s);
-		List<Integer> road = new ArrayList<>(); 
+		StringTokenizer st = new StringTokenizer(s, " ");
+		List<Long> road = new ArrayList<>(); 
 		while(st.hasMoreTokens()) {
-			road.add(Integer.parseInt(st.nextToken()));
+			road.add(Long.parseLong(st.nextToken()));
 		}
 		
 		
 		s = br.readLine();
-		st = new StringTokenizer(s);
-		List<Integer> gas = new ArrayList<>(); 
+		st = new StringTokenizer(s, " ");
+		List<Long> gas = new ArrayList<>(); 
 		while(st.hasMoreTokens()) {
-			gas.add(Integer.parseInt(st.nextToken()));
+			gas.add(Long.parseLong(st.nextToken()));
 		}
-		int gprice = 10001;
-		int total = 0;
-		int dis = 0;
+		long gprice = 1000000001;
+		long total = 0;
+		long dis = 0;
 		for (int i = 0; i < n; i++) {
 			if (gas.get(i) < gprice) {
 				gprice = gas.get(i);
