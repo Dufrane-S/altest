@@ -1,0 +1,1 @@
+select ai.datetime from animal_ins as ai order by ai.datetime limit 1;
