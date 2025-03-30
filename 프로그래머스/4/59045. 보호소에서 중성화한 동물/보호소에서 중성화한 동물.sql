@@ -1,0 +1,1 @@
+select i.animal_id, o.animal_type, o.name from animal_ins as i join animal_outs as o on i.animal_id = o.animal_id where (i.sex_upon_intake not like 'Spayed%' and i.sex_upon_intake not like '%Neutered%') and (o.sex_upon_outcome like 'spayed%' or o.sex_upon_outcome like 'neutered%') order by i.animal_id;
