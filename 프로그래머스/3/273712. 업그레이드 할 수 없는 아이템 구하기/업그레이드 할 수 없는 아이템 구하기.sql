@@ -1,0 +1,1 @@
+select item_id, item_name, rarity from item_info where item_id not in(select PARENT_ITEM_ID from item_tree where parent_item_id is not null) order by item_id desc;
