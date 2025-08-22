@@ -27,9 +27,12 @@ public class Main {
             }
             count++;
         }
+        StringBuilder sb = new StringBuilder();
         for (int now : answers) {
-            System.out.print(now + " ");
+            sb.append(now);
+            sb.append(' ');
         }
+        System.out.println(sb);
 
     }
 }
